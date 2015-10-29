@@ -1,0 +1,6 @@
+autoloaders:
+  Philwinkle: %module%/src
+
+commands:
+   customCommands:
+       - Philwinkle\Magento\Command\Core\UnhackCommand
