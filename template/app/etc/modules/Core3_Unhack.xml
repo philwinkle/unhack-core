@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Core3_Unhack>
+            <active>true</active>
+            <codePool>local</codePool>
+            <depends></depends>
+        </Core3_Unhack>
+    </modules>
+</config>

@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Core3_Unhack>
+            <version>1.0.0</version>
+        </Core3_Unhack>
+    </modules>
+    <global>
+        <blocks>
+            <core3_unhack>
+                <class>Core3_Unhack_Block</class>
+            </core3_unhack>
+        </blocks>
+        <helpers>
+            <core3_unhack>
+                <class>Core3_Unhack_Helper</class>
+            </core3_unhack>
+        </helpers>
+        <models>
+            <core3_unhack>
+                <class>Core3_Unhack_Model</class>
+            </core3_unhack>
+        </models>
+        <resources>
+            <core3_unhack_setup>
+                <setup>
+                    <module>Core3_Unhack</module>
+                </setup>
+            </core3_unhack_setup>
+        </resources>
+    </global>
+</config>
