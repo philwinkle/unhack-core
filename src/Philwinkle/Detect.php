@@ -32,6 +32,27 @@ class Detect
     protected function _findDefinedClasses()
     {
         if(!$this->className){
+            //interrogate class from file
+            //get the current pointer to reset
+            $pointer = $this->file->key();
+            $max = $this->file->getSize();
+
+            for($line = $pointer; $line<=$max; $line++){
+                $this->file->seek($line);
+
+                $matches = [];
+                if(stristr($this->file->current(), 'class')){
+                    preg_match_all('/class\s+(.*?)\s+/', $this->file->current(), $matches);
+                    $className = $matches[1][0];
+                    if(class_exists($className)){
+                        return $className;
+                    }
+                }
+            }
+
+            //reset the pointer
+            $this->file->seek($pointer);
+
             //get defined classes in the file
             $classes = get_declared_classes();
             include($this->filePath);
