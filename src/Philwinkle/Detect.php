@@ -36,7 +36,7 @@ class Detect
             $classes = get_declared_classes();
             include($this->filePath);
             $diff = array_diff(get_declared_classes(), $classes);
-            $this->className = reset($diff);
+            $this->className = end($diff);
         }
         return $this->className;
     }
