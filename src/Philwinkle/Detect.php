@@ -65,7 +65,8 @@ class Detect
         $types = [
             'model'=>'_Model_',
             'block'=>'_Block_',
-            'helper'=>'_Helper_'
+            'helper'=>'_Helper_',
+            'controller' => 'Controller'
         ];
 
         //find the type
@@ -73,7 +74,7 @@ class Detect
             if(stristr($className, $typeString)){
                 $shortCodeParts = explode($typeString, ltrim($className, 'Mage_'));
                 $shortCodeParts = array_map('strtolower', $shortCodeParts);
-                $this->shortCode = implode('/', $shortCodeParts);
+                $this->shortCode = $type!=='controller' ? implode('/', $shortCodeParts) : null;
                 $this->type = $type;
 
                 return $this->shortCode;
