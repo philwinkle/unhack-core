@@ -22,6 +22,7 @@ class UnhackCommand extends \N98\Magento\Command\AbstractMagentoCommand
 
 	public function execute(InputInterface $input, OutputInterface $output)
 	{
+		$hacks = [];
 		$this->_input = $input;
 		$this->_output = $output;
 
@@ -31,9 +32,10 @@ class UnhackCommand extends \N98\Magento\Command\AbstractMagentoCommand
 		$lines = $this->_parseLines();
 		foreach ($lines as $lineNumber => $filePath) {
 			$file = new \SplFileObject($filePath, "r");
-			$detect = new Detect($file, $lineNumber);
-			print_r($detect);
+			$coreHack = new CoreHack($file, $lineNumber);
+			$hacks[$coreHack->className][] = $coreHack;
 		}
+		$generator = Generator::run($hacks);
 	}
 
 	protected function _parseLines()
