@@ -17,7 +17,6 @@ class UnhackCommand extends \N98\Magento\Command\AbstractMagentoCommand
 	protected function configure()
 	{
 		$this->setName('core:unhack')
-			->addArgument('files', InputArgument::REQUIRED, 'The list of file names and line numbers')
 			->setDescription('Unhack the core');
 	}
 
@@ -39,17 +38,18 @@ class UnhackCommand extends \N98\Magento\Command\AbstractMagentoCommand
 
 	protected function _parseLines()
 	{
-		$input = $this->_input->getArgument('files');
-		$lines = explode("\r\n", $input);
-
 		$results = array();
-		foreach ($lines as $line) {
+		while($line = fgets(STDIN)) {
 			$parts = explode(":", $line);
 			if (count($parts) != 2) {
 				continue;
 			}
+			$fileName = trim($parts[0]);
+			if (substr($fileName, -4) != ".php") {
+				continue;
+			}
 
-			$results[$parts[1]] = $parts[0];
+			$results[(int)$parts[1]] = $fileName;
 		}
 
 		return $results;
