@@ -79,7 +79,17 @@ class Generator
     }
 
     protected function _write()
-    {
+    {  
+        //write app/etc/modules/ file
+        $templateFilepath = __DIR__ . '/../template/Migrated_FromCore.xml';
+        $moduleRegistrationDir = \Mage::getBaseDir('app') . '/etc/modules';
+        $moduleRegistrationFilepath = $moduleRegistrationDir . '/Migrated_FromCore.xml';
+
+        copy($templateFilepath, $moduleRegistrationFilepath);
+        echo "Writing $moduleRegistrationFilepath\r\n";
+
+
+        //write etc/config.xml
         $directory = \Mage::getBaseDir('app') . '/code/local/Migrated/FromCore/etc';
         $filePath = $directory . "/config.xml";
         echo "Writing $filePath\r\n";
