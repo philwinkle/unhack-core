@@ -3,10 +3,10 @@
 namespace Philwinkle;
 
 /**
- * Class Detect
+ * Class CoreHack
  * @package Philwinkle
  */
-class Detect
+class CoreHack
 {
     public $line;
     public $file;
