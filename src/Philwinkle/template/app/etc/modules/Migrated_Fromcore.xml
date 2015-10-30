@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <config>
     <modules>
-        <Core3_Unhack>
+        <Migrated_FromCore>
             <active>true</active>
             <codePool>local</codePool>
             <depends></depends>
-        </Core3_Unhack>
+        </Migrated_FromCore>
     </modules>
 </config>
