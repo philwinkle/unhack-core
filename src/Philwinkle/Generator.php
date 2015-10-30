@@ -84,7 +84,7 @@ class Generator
         $filePath = $directory . "/config.xml";
         echo "Writing $filePath\r\n";
 
-        mkdir($directory, 0777, true);
+        mkdir($directory, 0755, true);
         $this->_configXml->asXML($filePath);
     }
 }
