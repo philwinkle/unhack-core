@@ -73,9 +73,9 @@ class Generator
         $generatedClassName = "Migrated_FromCore_" . $typeUppercase . "_" . $hack->classNameSuffix;
 
         list($moduleAlias, $classAlias) = explode("/", $hack->shortCode);
-        $node->addChild($moduleAlias)
-            ->addChild("rewrite")
-            ->addChild($classAlias, $generatedClassName);
+        $moduleElement = isset($node->$moduleAlias) ? $node->$moduleAlias : $node->addChild($moduleAlias);
+        $rewriteElement = isset($moduleElement->rewrite) ? $moduleElement->rewrite : $moduleElement->addChild("rewrite");
+        $classElement = isset($rewriteElement->$classAlias) ? $rewriteElement->$classAlias : $rewriteElement->addChild($classAlias, $generatedClassName);
     }
 
     protected function _write()
