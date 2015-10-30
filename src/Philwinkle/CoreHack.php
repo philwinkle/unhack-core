@@ -13,7 +13,8 @@ class CoreHack
     public $filePath;
     public $shortCode;
     public $methodSource;
-    public $className;
+    public $className; // Mage_Subscriber_Block_Newsletter
+    public $classNameSuffix; // Newsletter
     public $type;
 
     /**
@@ -70,6 +71,12 @@ class CoreHack
         return implode("", array_slice($fileSource, $startLine, $length));
     }
 
+    /**
+     * ex: newsletter/subscribe
+     *
+     * @param $className
+     * @return null|string
+     */
     protected function _getShortCode($className)
     {
         $types = [
@@ -80,9 +87,11 @@ class CoreHack
         ];
 
         //find the type
-        foreach($types as $type=>$typeString){
-            if(stristr($className, $typeString)){
+        foreach ($types as $type => $typeString) {
+            if (stristr($className, $typeString)) {
                 $shortCodeParts = explode($typeString, ltrim($className, 'Mage_'));
+                $this->classNameSuffix = $shortCodeParts[1];
+
                 $shortCodeParts = array_map('strtolower', $shortCodeParts);
                 $this->shortCode = $type!=='controller' ? implode('/', $shortCodeParts) : null;
                 $this->type = $type;
@@ -90,7 +99,6 @@ class CoreHack
                 return $this->shortCode;
             }
         }
-
     }
 
     protected function _find($fileSource)

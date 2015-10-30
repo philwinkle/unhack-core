@@ -3,9 +3,9 @@
 namespace Philwinkle\Magento\Command\Core;
 
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Output\OutputInterface;
-use Philwinkle\Detect;
+use Philwinkle\CoreHack;
+use Philwinkle\Generator;
 
 class UnhackCommand extends \N98\Magento\Command\AbstractMagentoCommand
 {
@@ -13,6 +13,9 @@ class UnhackCommand extends \N98\Magento\Command\AbstractMagentoCommand
 
 	/** @var InputInterface */
 	protected $_input;
+
+	/** @var  OutputInterface */
+	protected $_output;
 
 	protected function configure()
 	{
@@ -31,11 +34,13 @@ class UnhackCommand extends \N98\Magento\Command\AbstractMagentoCommand
 
 		$lines = $this->_parseLines();
 		foreach ($lines as $lineNumber => $filePath) {
+			$this->_output->writeln("Unhacking " . $filePath . ":" . $lineNumber);
 			$file = new \SplFileObject($filePath, "r");
 			$coreHack = new CoreHack($file, $lineNumber);
 			$hacks[$coreHack->className][] = $coreHack;
 		}
-		$generator = Generator::run($hacks);
+
+		(new Generator)->run($hacks);
 	}
 
 	protected function _parseLines()
