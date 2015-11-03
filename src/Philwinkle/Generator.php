@@ -87,17 +87,16 @@ class Generator
     protected function _writeRewrites($hacks)
     {
         foreach ($hacks as $className => $hacksForClass) {
+            $functionsForClass = [];
             // shame
-            $functionsForClass = "";
             $typeUppercase = "";
             $templateFilepath = "";
-            $hack = "";
 
             foreach ($hacksForClass as $hack) {
                 /** @var $hack CoreHack */
                 $typeUppercase = uc_words($hack->type);
                 $templateFilepath = __DIR__ . "/template/$typeUppercase.php.tmpl";
-                $functionsForClass .= ltrim($hack->methodSource) . "\r\n\r\n";
+                $functionsForClass[] = trim($hack->methodSource);
             }
 
             $templateContents = file_get_contents($templateFilepath);
@@ -105,7 +104,7 @@ class Generator
                 $templateContents,
                 $hack->classNameSuffix,
                 "extends " . $hack->className,
-                $hack->methodSource
+                implode(PHP_EOL, $functionsForClass)
             );
 
             $generatedFileDirectory = \Mage::getBaseDir('app') . "/code/local/Migrated/FromCore/$typeUppercase";

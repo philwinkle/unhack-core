@@ -56,6 +56,10 @@ class UnhackCommand extends \N98\Magento\Command\AbstractMagentoCommand
 				continue;
 			}
 
+			if($fileName === 'index.php') {
+				continue;
+			}
+
 			$results[(int)$parts[1]] = $fileName;
 		}
 
