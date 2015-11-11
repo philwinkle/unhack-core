@@ -23,7 +23,7 @@ Here's the easiest:
 Usage
 ---
 
-We utilize two separate Magerun add-ons, `diff:files` (which is part of [Kalen Jordan's Magerun Addons](github.com/kalenjordan/magerun-addons)) and `core:unhack`. To install the core diff extension you will want to read the README for that utility. 
+We utilize two separate Magerun add-ons, `diff:files` (which is part of [Kalen Jordan's Magerun Addons](https://github.com/kalenjordan/magerun-addons)) and `core:unhack`. To install the core diff extension you will want to read the README for that utility. 
 
 After installed and the clean core version is located in the correct directory you should be able to execute the following from within your Magento hacked core project directory:
 
