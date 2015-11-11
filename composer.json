@@ -1,0 +1,30 @@
+{
+    "name": "philwinkle/unhack-core",
+    "description": "N98 MageRun module to unhack Magento core code.",
+    "type": "library",
+    "keywords": ["magerun"],
+    "homepage": "https://github.com/philwinkle/unhack-core",
+    "minimum-stability": "dev",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Phil Winkle",
+            "email": "philwinkle@gmail.com",
+            "homepage": "http://blog.philwinkle.com/",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "ext-pear": "^5.5.30"
+    },
+    "require": {
+        "n98/magerun": "^1.96.1",
+        "kalenjordan/magerun-addons": "dev-unhack_core"
+    },
+    "autoload": {
+        "psr-0": {
+            "Philwinkle": "src/"
+        }
+    }
+}
