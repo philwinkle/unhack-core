@@ -42,10 +42,13 @@ class CoreHack
                 $this->file->seek($line);
 
                 $matches = [];
-                if(stristr($this->file->current(), 'class')){
+                if(stristr($this->file->current(), 'class') 
+                  && preg_match('/^(abstract\s+)?(final\s+)?class/', $this->file->current())
+                ) {
                     preg_match_all('/class\s+(.*?)\s+/', $this->file->current(), $matches);
                     $className = $matches[1][0];
                     $this->className = $className;
+                    break;
                 }
             }
         }
